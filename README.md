@@ -83,7 +83,7 @@ I'm constantly working to improve the site. Upcoming features include:
 
 I'd love to hear your thoughts on my project!
 
-Your Name - khiwn@getintheq.io
+Ikkyu - khiwn@getintheq.io
 
 Project Link: https://github.com/khiwniti/getintheq.io
 
