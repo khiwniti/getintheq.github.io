@@ -16,6 +16,7 @@
     "@uiw/react-textarea-code-editor": "^3.1.0",
     "framer-motion": "^11.13.4",
     "lucide-react": "^0.453.0",
+    "nodemon": "^3.1.9",
     "papaparse": "^5.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -1,53 +1,55 @@
-
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
-
-interface ProjectCardProps {
+interface Project {
+  id?: string;
   title: string;
   description: string;
   image: string;
+  tools?: string[];
+  link?: string;
+  type?: string;
   tags: string[];
+  github?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCard: React.FC<Project> = ({
+  id,
   title,
   description,
   image,
-  tags
-
+  tags,
 }) => {
-  
-
   return (
     <>
-      <motion.div 
-        className="cursor-pointer group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+      <motion.div
+        className='cursor-pointer group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
       >
-        <div className="aspect-video overflow-hidden bg-gray-100">
-            <motion.img 
-            src={image} 
-            alt={title} 
-            className="w-full h-full object-cover"
+        <div className='aspect-video overflow-hidden bg-gray-100'>
+          <motion.img
+            src={image}
+            alt={title}
+            className='w-full h-full object-cover'
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
-            />
-          </div>
-          <div className="p-6">
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
-            {title}
+          />
+        </div>
+        <div className='p-6'>
+          <Link to={`/projects/${id}`}>
+            <h3 className='text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors'>
+              {title}
             </h3>
-            <p className="text-gray-600 mb-4">
-            {description}
-            </p>
-            <div className="flex flex-wrap gap-2">
+          </Link>
+          <p className='text-gray-600 mb-4'>{description}</p>
+          <div className='flex flex-wrap gap-2'>
             {tags.map((tag, index) => (
-              <motion.span 
+              <motion.span
                 key={index}
-                className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full"
+                className='px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full'
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
@@ -58,8 +60,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
       </motion.div>
-
-       
     </>
   )
 }

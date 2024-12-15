@@ -1,13 +1,14 @@
 import { Github, Linkedin, Mail, Download, BookOpen, Archive } from 'lucide-react'
-
-import { Link as RouterLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import Services from './Services'
 import Projects from './Projects'
 import Skills from './Skills'
 import Experience from './Experience'
 import Blog from './Blog'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 const Home = () => {
   const [servicesRef, servicesControls] = useScrollAnimation()
@@ -39,6 +40,8 @@ const Home = () => {
 
   return (
     <div className="overflow-x-hidden">
+      <Navbar />
+      {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-dark-gradient-start dark:to-dark-gradient-end pt-16">
         <div className="container mx-auto px-4 text-center">
           <div className="space-y-8">
@@ -57,7 +60,7 @@ const Home = () => {
 
             <div className="flex justify-center gap-6 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
               <a
-                href="https://github.com/getintheQ"
+                href="https://github.com/khiwniti"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white dark:bg-dark-card rounded-full shadow-sm hover:shadow-md transform hover:-translate-y-1 transition-all"
@@ -82,63 +85,104 @@ const Home = () => {
                 <Mail size={24} className="dark:text-dark-primary" />
               </a>
             </div>
-
             <div className="flex justify-center gap-4 pt-8 animate-fade-in opacity-0" style={{ animationDelay: '0.8s' }}>
-              <RouterLink
-                to="/blog"
-                className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
+              <Link
+              to="/blog"
+              className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
               >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
-                <span className="relative flex items-center gap-2">
-                  View Blog
-                  <BookOpen className="transform group-hover:rotate-12 transition-transform" size={20} />
-                </span>
-              </RouterLink>
-              <RouterLink
-                to="/projects"
-                className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
+              <span className="relative flex items-center gap-2">
+                View Blog
+                <BookOpen className="transform group-hover:rotate-12 transition-transform" size={20} />
+              </span>
+              </Link>
+              <Link
+              to="/projects"
+              className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
               >
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
-                <span className="relative flex items-center gap-2">
-                  View Projects
-                  <Archive className="transform group-hover:rotate-12 transition-transform" size={20} />
-                </span>
-              </RouterLink>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
+              <span className="relative flex items-center gap-2">
+                View Projects
+                <Archive className="transform group-hover:rotate-12 transition-transform" size={20} />
+              </span>
+              </Link>
               <button
-                onClick={handleDownloadCV}
-                className="px-6 py-3 bg-white dark:bg-dark-card text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors flex items-center gap-2"
+              onClick={handleDownloadCV}
+              className="px-6 py-3 bg-white dark:bg-dark-card text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors flex items-center gap-2"
               >
-                <Download size={20} />
-                CV
+              <Download size={20} />
+              CV
               </button>
             </div>
             </div>
           </div>
-
       </section>
 
-      {/* Rest of the sections remain unchanged */}
-      <motion.div ref={servicesRef} animate={servicesControls} initial="hidden" variants={fadeUpVariants} id="services" className="scroll-mt-16">
-        <Services />
-      </motion.div>
+              {/* Services Section */}
+              <section id="services" className="scroll-mt-16">
+              <motion.div
+                ref={servicesRef}
+                animate={servicesControls}
+                initial="hidden"
+                variants={fadeUpVariants}
+              >
+                <Services />
+              </motion.div>
+              </section>
 
-      <motion.div ref={projectsRef} animate={projectsControls} initial="hidden" variants={fadeUpVariants} id="projects" className="scroll-mt-16 bg-gray-50 dark:bg-dark-bg">
-        <Projects />
-      </motion.div>
+              {/* Projects Section */}
+              <motion.div
+              ref={projectsRef}
+              animate={projectsControls}
+              initial="hidden"
+              variants={fadeUpVariants}
+              id="projects"
+              className="scroll-mt-16"
+              >
+              <Projects />
+              </motion.div>
 
-      <motion.div ref={skillsRef} animate={skillsControls} initial="hidden" variants={fadeUpVariants} id="skills" className="scroll-mt-16">
-        <Skills />
-      </motion.div>
+              {/* Skills Section */}
+              <motion.div 
+              ref={skillsRef} 
+              animate={skillsControls} 
+              initial="hidden" 
+              variants={fadeUpVariants} 
+              id="skills" 
+              className="scroll-mt-16"
+              >
+              <Skills />
+              </motion.div>
 
-      <motion.div ref={experienceRef} animate={experienceControls} initial="hidden" variants={fadeUpVariants} id="experience" className="scroll-mt-16 bg-gray-50 dark:bg-dark-bg">
-        <Experience />
-      </motion.div>
+                {/* Experience Section */}
+                <motion.section
+                ref={experienceRef}
+                animate={experienceControls}
+                initial="hidden"
+                variants={fadeUpVariants}
+                id="experience"
+                className="scroll-mt-16 bg-gray-50 dark:bg-dark-bg"
+                >
+                <Experience />
+                </motion.section>
 
-      <motion.div ref={blogRef} animate={blogControls} initial="hidden" variants={fadeUpVariants} id="blog" className="scroll-mt-16">
-        <Blog />
-      </motion.div>
-    </div>
-  )
+                {/* Blog Section */}
+                <motion.div 
+                ref={blogRef} 
+                animate={blogControls} 
+                initial="hidden" 
+                variants={fadeUpVariants} 
+                id="blog" 
+                className="scroll-mt-16"
+                >
+                <Blog />
+                </motion.div>
+
+                {/* Footer */}
+                <Footer />
+                </div>
+              )
+
 }
 
 export default Home

@@ -4,7 +4,7 @@ import { Link as ScrollLink } from 'react-scroll'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [blogDropdownOpen, setBlogDropdownOpen] = useState(false)
@@ -52,21 +52,18 @@ const Navbar = () => {
 
   const navLinks = [
     { path: 'home', label: 'Home' },
-    { path: 'projects', label: 'Projects' },
     { path: 'services', label: 'Services' },
+    { path: 'projects', label: 'Projects' },
     { path: 'skills', label: 'Skills' },
-    { path: 'experience', label: 'Experience' },
-    { path: 'notebook', label: 'Notebook' },
+    { path: 'experience', label: 'Experience' }
   ]
 
   const renderLink = (link: { path: string, label: string }) => {
-    const linkPath = link.path === 'home' ? '' : link.path
-    const isActive = location.pathname === `/${linkPath}`
     const baseClasses = "transition-colors relative py-2"
     const activeClasses = "text-blue-600 dark:text-blue-400 font-medium"
     const inactiveClasses = "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
 
-    if (isHome && ['services', 'skills', 'experience'].includes(link.path)) {
+    if (isHome && link.path !== 'home') {
       return (
         <ScrollLink
           to={link.path}
@@ -81,19 +78,24 @@ const Navbar = () => {
           {link.label}
         </ScrollLink>
       )
+    } else if (isHome && link.path === 'home') {
+      return (
+        <ScrollLink
+          to={link.path}
+          spy={true}
+          smooth={true}
+          offset={-64}
+          duration={500}
+          className={`${baseClasses} cursor-pointer ${inactiveClasses}`}
+          activeClass={activeClasses}
+          onClick={() => setIsOpen(false)}
+        >
+          {link.label}
+        </ScrollLink>
+      )
+    } else {      
+      return <RouterLink to={`/${link.path}`} className={`${baseClasses} ${inactiveClasses}`} onClick={() => setIsOpen(false)}>{link.label}</RouterLink>
     }
-    return (
-      <RouterLink
-        to={`/${linkPath}`}
-        className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
-        onClick={() => setIsOpen(false)}
-      >
-        {link.label}
-        {isActive && (
-          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400 rounded-full" />
-        )}
-      </RouterLink>
-    )
   }
 
   return (
@@ -106,9 +108,9 @@ const Navbar = () => {
           <RouterLink to="/" className="text-xl font-bold text-gray-900 dark:text-white">
             Ikkyu
           </RouterLink>
-
-          {/* Desktop Navigation */}
+          
           <div className="hidden md:flex items-center space-x-8">
+            {/* Desktop Navigation */}
             {navLinks.map((link) => (
               <div key={link.path}>
                 {renderLink(link)}
@@ -171,32 +173,32 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {isOpen && (
+        {/* Mobile Navigation */}
+        {isOpen && (
         <div className="md:hidden bg-white dark:bg-dark-card border-t dark:border-dark-border">
           <div className="container mx-auto px-4 py-4">
-            <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <div key={link.path}>
-                  {renderLink(link)}
-                </div>
-              ))}
-              <RouterLink
-                to="/blog"
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Blog
-              </RouterLink>
-              <div className="pt-4 border-t dark:border-dark-border">
-                <ThemeToggle />
-              </div>
+          <div className="flex flex-col space-y-4">
+            {navLinks.map((link) => (
+            <div key={link.path}>
+              {renderLink(link)}
+            </div>
+            ))}
+            <RouterLink
+            to="/blog"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white py-2"
+            onClick={() => setIsOpen(false)}
+            >
+            Blog
+            </RouterLink>
+            <div className="pt-4 border-t dark:border-dark-border">
+            <ThemeToggle />
             </div>
           </div>
+          </div>
         </div>
-      )}
-    </nav>
-  )
-}
+        )}
+      </nav>
+      )
+    }
 
-export default Navbar
+    export default Navbar
