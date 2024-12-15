@@ -1,3 +1,7 @@
+interface ExperienceProps {
+  isDarkMode: boolean;
+}
+
 interface ExperienceData {
   date: string;
   title: string;
@@ -18,3 +22,4 @@ interface RelevantProject {
 }
 
 export default ExperienceData;
+export type { ExperienceProps };

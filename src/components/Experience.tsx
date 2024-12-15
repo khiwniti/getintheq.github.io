@@ -156,8 +156,11 @@ const Experience = () => {
           A chronicle of my professional journey and key achievements
         </p>
       </div>
-    </section>
+
+      <div className="max-w-6xl mx-auto">
+        <VerticalTimeline items={experienceData} />
+      </div>
+    </div>
   )
 }
-
 export default Experience

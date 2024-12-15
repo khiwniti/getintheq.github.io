@@ -1,5 +1,6 @@
-import { Construction } from 'lucide-react'
 
+import { Construction } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Blog = () => {
   return (
@@ -16,13 +17,20 @@ const Blog = () => {
         <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
           Coming Soon
         </h3>
-        <p className="text-gray-500 dark:text-gray-400 text-center max-w-md">
+        <p className="text-gray-500 dark:text-gray-400 text-center max-w-md mb-8">
           The blog section is currently under development. Stay tuned for interesting content!
         </p>
+        <Link
+          to="/blog"
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          View All Posts
+        </Link>
       </div>
     </div>
   )
 }
 
 export default Blog
+
 

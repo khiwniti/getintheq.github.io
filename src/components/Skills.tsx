@@ -3,9 +3,10 @@ import {
   Database, 
   Brain, 
   Globe, 
-  Cpu,
+  Cpu, 
   GitBranch 
 } from 'lucide-react';
+
 
 
 const Skills = () => {

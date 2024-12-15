@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, ExternalLink, Github, ImageOff } from 'lucide-react'
 import { useState } from 'react'
 
-interface Project {
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -11,7 +11,10 @@ interface Project {
   link: string;
   type: string;
   github?: string;
+  tags: string[];
 }
+
+
 
 const ProjectDetails = () => {
   const { id } = useParams()
@@ -19,34 +22,40 @@ const ProjectDetails = () => {
   
   const projects: Project[] = [
     {
-      id: "product-classification",
-      title: "Product Text Classification System",
-      description: "An intelligent system that automatically categorizes product descriptions using natural language processing and unsupervised learning techniques. The system processes freeform text data from CSV files, applies text clustering algorithms, and automatically labels product groups based on semantic similarity.",
-      image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
+        id: "product-classification",
+        title: "Product Text Classification System", 
+        description: "An intelligent system that automatically categorizes product descriptions using natural language processing and unsupervised learning techniques. The system processes freeform text data from CSV files, applies text clustering algorithms, and automatically labels product groups based on semantic similarity.",
+        image: "https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=800",
         tools: ["Python", "scikit-learn", "NLTK", "Word2Vec", "K-means", "Pandas"],
         link: "#",
         type: "ai-ml",
-        github: "https://github.com/username/product-classification"
+        github: "https://github.com/username/product-classification",
+        tags: ['AI', 'Machine Learning', 'NLP', 'Python', 'Clustering']
+
       },
     {
-      id: "vizml-recommendation",
-      title: "VizML Recommendation System",
-      description: "An intelligent system that automatically recommends the most effective data visualizations using machine learning. Built with VizML principles to analyze data characteristics and suggest optimal visualization types.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+        id: "vizml-recommendation",
+        title: "VizML Recommendation System",
+        description: "An intelligent system that automatically recommends the most effective data visualizations using machine learning. Built with VizML principles to analyze data characteristics and suggest optimal visualization types.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
         tools: ["VizML", "Python", "TensorFlow", "D3.js", "Flask"],
         link: "#",
         type: "ai-ml",
-        github: "https://github.com/username/vizml-recommendation"
+        github: "https://github.com/username/vizml-recommendation",
+        tags: ['AI', 'Machine Learning', 'Data Visualization', 'VizML', 'Python']
+
       },
     {
-      id: "sales-analytics",
-      title: "Sales Performance Analytics",
-      description: "Analysis of yearly sales data to identify trends and growth opportunities using Python and Pandas.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+        id: "sales-analytics",
+        title: "Sales Performance Analytics",
+        description: "Analysis of yearly sales data to identify trends and growth opportunities using Python and Pandas.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
         tools: ["Python", "Pandas", "Matplotlib", "Seaborn"],
         link: "#",
         type: "data",
-        github: "https://github.com/username/sales-analytics"
+        github: "https://github.com/username/sales-analytics",
+        tags: ['Data Analysis', 'Python', 'Pandas', 'Data Visualization']
+
       }
   ]
 
