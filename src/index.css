@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   scroll-behavior: smooth;
   --toast-bg: #ffffff;
   --toast-color: #111827;
@@ -16,8 +16,10 @@
 
 /* Dark mode background setup */
 .dark body {
-  background-image: linear-gradient(to bottom right, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
+  background-color: #1f2937; /* Solid dark gray */
   backdrop-filter: blur(12px);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
 }
 
 /* Glass effect utilities directly defined */
@@ -94,7 +96,7 @@
 }
 
 .dark .text-gray-900 {
-  @apply text-white;
+  @apply text-gray-200; /* Lighter gray */
 }
 
 /* Dark mode input and form styles */
@@ -120,12 +122,12 @@
 }
 
 .dark .hover\:bg-gray-200:hover {
-  @apply hover:bg-gray-700/50;
+  @apply hover:bg-blue-700/50;
 }
 
 /* Card and container background gradients */
 .dark .bg-gradient-to-br {
-  background-image: linear-gradient(to bottom right, rgba(31, 41, 55, 0.5), rgba(17, 24, 39, 0.5));
+  background-color: rgba(31, 41, 55, 0.75);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(75, 85, 99, 0.3);
 }

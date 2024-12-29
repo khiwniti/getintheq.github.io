@@ -1,17 +1,7 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
-
-interface Project {
-  id?: string;
-  title: string;
-  description: string;
-  image: string;
-  tools?: string[];
-  link?: string;
-  type?: string;
-  tags: string[];
-  github?: string;
-}
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Project } from '../types/Project';
 
 const ProjectCard: React.FC<Project> = ({
   id,
@@ -21,9 +11,9 @@ const ProjectCard: React.FC<Project> = ({
   tags,
 }) => {
   return (
-    <>
+    <Link to={`/projects/${id}`}>
       <motion.div
-        className='cursor-pointer group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow'
+        className='cursor-pointer group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow block'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.02 }}
@@ -39,20 +29,18 @@ const ProjectCard: React.FC<Project> = ({
           />
         </div>
         <div className='p-6'>
-          <Link to={`/projects/${id}`}>
-            <h3 className='text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors'>
-              {title}
-            </h3>
-          </Link>
+          <h3 className='text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors'>
+            {title}
+          </h3>
           <p className='text-gray-600 mb-4'>{description}</p>
           <div className='flex flex-wrap gap-2'>
-            {tags.map((tag, index) => (
+            {Array.isArray(tags) && tags.length > 0 && tags.map((tag) => (
               <motion.span
-                key={index}
+                key={tag}
                 className='px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full'
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: tags.indexOf(tag) * 0.1 }}
               >
                 {tag}
               </motion.span>
@@ -60,8 +48,8 @@ const ProjectCard: React.FC<Project> = ({
           </div>
         </div>
       </motion.div>
-    </>
-  )
-}
+    </Link>
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;

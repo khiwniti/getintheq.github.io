@@ -1,11 +1,11 @@
 export interface Project {
-  id?: string;
+  id: string;
   title: string;
   description: string;
   image: string;
-  tools: string[]; // Make tools required
+  tools?: string[];
   link?: string;
   type?: string;
-  tags?: string[];
+  tags: string[];
   github?: string;
 }
