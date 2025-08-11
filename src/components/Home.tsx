@@ -87,102 +87,101 @@ const Home = () => {
             </div>
             <div className="flex justify-center gap-4 pt-8 animate-fade-in opacity-0" style={{ animationDelay: '0.8s' }}>
               <Link
-              to="/blog"
-              className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
+                to="/blog"
+                className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
               >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
-              <span className="relative flex items-center gap-2">
-                View Blog
-                <BookOpen className="transform group-hover:rotate-12 transition-transform" size={20} />
-              </span>
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
+                <span className="relative flex items-center gap-2">
+                  View Blog
+                  <BookOpen className="transform group-hover:rotate-12 transition-transform" size={20} />
+                </span>
               </Link>
               <Link
-              to="/projects"
-              className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
+                to="/projects"
+                className="group relative px-8 py-4 bg-blue-600 text-white dark:bg-blue-500 rounded-lg overflow-hidden flex items-center gap-2"
               >
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
-              <span className="relative flex items-center gap-2">
-                View Projects
-                <Archive className="transform group-hover:rotate-12 transition-transform" size={20} />
-              </span>
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></span>
+                <span className="relative flex items-center gap-2">
+                  View Projects
+                  <Archive className="transform group-hover:rotate-12 transition-transform" size={20} />
+                </span>
               </Link>
               <button
-              onClick={handleDownloadCV}
-              className="px-6 py-3 bg-white dark:bg-dark-card text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors flex items-center gap-2"
+                onClick={handleDownloadCV}
+                className="px-6 py-3 bg-white dark:bg-dark-card text-blue-600 dark:text-blue-400 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors flex items-center gap-2"
               >
-              <Download size={20} />
-              CV
+                <Download size={20} />
+                CV
               </button>
             </div>
-            </div>
           </div>
+        </div>
       </section>
 
-              {/* Services Section */}
-              <section id="services" className="scroll-mt-16">
-              <motion.div
-                ref={servicesRef}
-                animate={servicesControls}
-                initial="hidden"
-                variants={fadeUpVariants}
-              >
-                <Services />
-              </motion.div>
-              </section>
+      {/* Services Section */}
+      <section id="services" className="scroll-mt-16">
+        <motion.div
+          ref={servicesRef}
+          animate={servicesControls}
+          initial="hidden"
+          variants={fadeUpVariants}
+        >
+          <Services />
+        </motion.div>
+      </section>
 
-              {/* Projects Section */}
-              <motion.div
-              ref={projectsRef}
-              animate={projectsControls}
-              initial="hidden"
-              variants={fadeUpVariants}
-              id="projects"
-              className="scroll-mt-16"
-              >
-              <Projects />
-              </motion.div>
+      {/* Projects Section */}
+      <motion.div
+        ref={projectsRef}
+        animate={projectsControls}
+        initial="hidden"
+        variants={fadeUpVariants}
+        id="projects"
+        className="scroll-mt-16"
+      >
+        <Projects />
+      </motion.div>
 
-              {/* Skills Section */}
-              <motion.div 
-              ref={skillsRef} 
-              animate={skillsControls} 
-              initial="hidden" 
-              variants={fadeUpVariants} 
-              id="skills" 
-              className="scroll-mt-16"
-              >
-              <Skills />
-              </motion.div>
+      {/* Skills Section */}
+      <motion.div 
+        ref={skillsRef} 
+        animate={skillsControls} 
+        initial="hidden" 
+        variants={fadeUpVariants} 
+        id="skills" 
+        className="scroll-mt-16"
+      >
+        <Skills />
+      </motion.div>
 
-                {/* Experience Section */}
-                <motion.section
-                ref={experienceRef}
-                animate={experienceControls}
-                initial="hidden"
-                variants={fadeUpVariants}
-                id="experience"
-                className="scroll-mt-16 bg-gray-50 dark:bg-dark-bg"
-                >
-                <Experience />
-                </motion.section>
+      {/* Experience Section */}
+      <motion.section
+        ref={experienceRef}
+        animate={experienceControls}
+        initial="hidden"
+        variants={fadeUpVariants}
+        id="experience"
+        className="scroll-mt-16 bg-gray-50 dark:bg-dark-bg"
+      >
+        <Experience />
+      </motion.section>
 
-                {/* Blog Section */}
-                <motion.div 
-                ref={blogRef} 
-                animate={blogControls} 
-                initial="hidden" 
-                variants={fadeUpVariants} 
-                id="blog" 
-                className="scroll-mt-16"
-                >
-                <Blog />
-                </motion.div>
+      {/* Blog Section */}
+      <motion.div 
+        ref={blogRef} 
+        animate={blogControls} 
+        initial="hidden" 
+        variants={fadeUpVariants} 
+        id="blog" 
+        className="scroll-mt-16"
+      >
+        <Blog />
+      </motion.div>
 
-                {/* Footer */}
-                <Footer />
-                </div>
-              )
-
+      {/* Footer */}
+      <Footer />
+    </div>
+  )
 }
 
 export default Home

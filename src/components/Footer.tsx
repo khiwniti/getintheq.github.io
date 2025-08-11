@@ -1,34 +1,39 @@
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
-import toast from 'react-hot-toast'
+import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
-  
+  const currentYear = new Date().getFullYear();
+
   const socialLinks = [
     {
-      name: 'GitHub',
-      url: 'https://github.com/getintheQ',
-      icon: <Github size={20} />
+      name: "GitHub",
+      url: "https://github.com/getintheQ",
+      icon: <Github size={20} />,
     },
     {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com/in/getintheq',
-      icon: <Linkedin size={20} />
-    }
-  ]
-  
+      name: "LinkedIn",
+      url: "https://linkedin.com/in/getintheq",
+      icon: <Linkedin size={20} />,
+    },
+  ];
+
   const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const email = new FormData(form).get('email') as string
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = new FormData(form).get("email") as string;
 
     // Store subscription in localStorage
-    const subscriptions = JSON.parse(localStorage.getItem('newsletter-subscriptions') || '[]')
+    const subscriptions = JSON.parse(
+      localStorage.getItem("newsletter-subscriptions") || "[]",
+    );
     subscriptions.push({
       email,
-      date: new Date().toISOString()
-    })
-    localStorage.setItem('newsletter-subscriptions', JSON.stringify(subscriptions))
+      date: new Date().toISOString(),
+    });
+    localStorage.setItem(
+      "newsletter-subscriptions",
+      JSON.stringify(subscriptions),
+    );
 
     // Show success message with notification about the admin email
     toast.success(
@@ -37,20 +42,22 @@ const Footer = () => {
       </div>,
       {
         duration: 4000,
-        position: 'top-center',
+        position: "top-center",
         style: {
-          background: '#10B981',
-          color: '#FFFFFF',
-          padding: '16px',
+          background: "#10B981",
+          color: "#FFFFFF",
+          padding: "16px",
         },
-      }
-    )
+      },
+    );
 
     // Send notification to admin (simulated)
-    console.log(`New subscription notification sent to info@getintheq.io:\nSubscriber: ${email}\nDate: ${new Date().toLocaleString()}`)
-    
-    form.reset()
-  }
+    console.log(
+      `New subscription notification sent to info@getintheq.io:\nSubscriber: ${email}\nDate: ${new Date().toLocaleString()}`,
+    );
+
+    form.reset();
+  };
 
   return (
     <footer className="bg-white border-t border-gray-100">
@@ -83,7 +90,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-start gap-2 text-gray-600 group">
-                <MapPin size={20} className="flex-shrink-0 mt-1 group-hover:text-blue-600" />
+                <MapPin
+                  size={20}
+                  className="flex-shrink-0 mt-1 group-hover:text-blue-600"
+                />
                 <span className="group-hover:translate-x-1 transition-transform">
                   Bangkok, Thailand
                 </span>
@@ -109,7 +119,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Stay Updated</h3>
             <p className="text-gray-600 mb-6">
-              Subscribe to my newsletter for the latest updates on technology, AI, and engineering.            </p>
+              Subscribe to my newsletter for the latest updates on technology,
+              AI, and engineering.{" "}
+            </p>
             <form onSubmit={handleSubscribe} className="space-y-4">
               <input
                 type="email"
@@ -122,7 +134,10 @@ const Footer = () => {
                 type="submit"
                 className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 group"
               >
-                <Mail size={20} className="group-hover:rotate-12 transition-transform" />
+                <Mail
+                  size={20}
+                  className="group-hover:rotate-12 transition-transform"
+                />
                 Subscribe
               </button>
             </form>
@@ -137,7 +152,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

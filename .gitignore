@@ -2,3 +2,5 @@
 node_modules
 dist
 .DS_Store
+**/tempobook/dynamic/
+**/tempobook/storyboards/

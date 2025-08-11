@@ -1,69 +1,96 @@
-import { useState, useEffect, useRef } from 'react'
-import { Menu, X, ChevronDown, BrainCircuit, Cpu, Lightbulb, BookOpen } from 'lucide-react'
-import { Link as ScrollLink } from 'react-scroll'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
-import ThemeToggle from './ThemeToggle'
+import { useState, useEffect, useRef } from "react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  BrainCircuit,
+  Cpu,
+  Lightbulb,
+  BookOpen,
+} from "lucide-react";
+import { Link as ScrollLink } from "react-scroll";
+import ThemeToggle from "./ThemeToggle";
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [blogDropdownOpen, setBlogDropdownOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const location = useLocation()
-  const isHome = location.pathname === '/'
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const isHome = currentPath === "/";
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handleLocationChange);
+    return () => window.removeEventListener("popstate", handleLocationChange);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10)
-    }
+      setScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setBlogDropdownOpen(false)
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setBlogDropdownOpen(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const blogCategories = [
     {
-      name: 'Generative AI',
+      name: "Generative AI",
       icon: <BrainCircuit size={18} />,
-      description: 'Exploring the latest in AI, machine learning, and neural networks',
+      description:
+        "Exploring the latest in AI, machine learning, and neural networks",
     },
     {
-      name: 'Engineering Simulation',
+      name: "Engineering Simulation",
       icon: <Cpu size={18} />,
-      description: 'Advanced simulation techniques and computational methods',
+      description: "Advanced simulation techniques and computational methods",
     },
     {
-      name: 'Tips and Tricks',
+      name: "Tips and Tricks",
       icon: <Lightbulb size={18} />,
-      description: 'Helpful insights and practical solutions for developers',
-    }
-  ]
+      description: "Helpful insights and practical solutions for developers",
+    },
+  ];
 
   const navLinks = [
-    { path: 'home', label: 'Home' },
-    { path: 'services', label: 'Services' },
-    { path: 'projects', label: 'Projects' },
-    { path: 'skills', label: 'Skills' },
-    { path: 'experience', label: 'Experience' }
-  ]
+    { path: "home", label: "Home" },
+    { path: "services", label: "Services" },
+    { path: "projects", label: "Projects" },
+    { path: "skills", label: "Skills" },
+    { path: "experience", label: "Experience" },
+  ];
 
-  const renderLink = (link: { path: string, label: string }) => {
-    const baseClasses = "transition-colors relative py-2"
-    const activeClasses = "text-blue-600 dark:text-blue-400 font-medium"
-    const inactiveClasses = "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+  const handleNavigation = (path: string) => {
+    window.history.pushState({}, "", path);
+    setCurrentPath(path);
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  };
 
-    if (isHome && link.path !== 'home') {
+  const renderLink = (link: { path: string; label: string }) => {
+    const baseClasses = "transition-colors relative py-2";
+    const activeClasses = "text-blue-600 dark:text-blue-400 font-medium";
+    const inactiveClasses =
+      "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white";
+
+    if (isHome && link.path !== "home") {
       return (
         <ScrollLink
           to={link.path}
@@ -77,8 +104,8 @@ export const Navbar = () => {
         >
           {link.label}
         </ScrollLink>
-      )
-    } else if (isHome && link.path === 'home') {
+      );
+    } else if (isHome && link.path === "home") {
       return (
         <ScrollLink
           to={link.path}
@@ -92,29 +119,44 @@ export const Navbar = () => {
         >
           {link.label}
         </ScrollLink>
-      )
-    } else {      
-      return <RouterLink to={`/${link.path}`} className={`${baseClasses} ${inactiveClasses}`} onClick={() => setIsOpen(false)}>{link.label}</RouterLink>
+      );
+    } else {
+      return (
+        <button
+          onClick={() => {
+            handleNavigation(link.path === "home" ? "/" : `/${link.path}`);
+            setIsOpen(false);
+          }}
+          className={`${baseClasses} ${inactiveClasses} cursor-pointer`}
+        >
+          {link.label}
+        </button>
+      );
     }
-  }
+  };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-      scrolled ? 'bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md shadow-sm' : ''
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        scrolled
+          ? "bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md shadow-sm"
+          : ""
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <RouterLink to="/" className="text-xl font-bold text-gray-900 dark:text-white">
+          <button
+            onClick={() => handleNavigation("/")}
+            className="text-xl font-bold text-gray-900 dark:text-white cursor-pointer"
+          >
             Ikkyu
-          </RouterLink>
-          
+          </button>
+
           <div className="hidden md:flex items-center space-x-8">
             {/* Desktop Navigation */}
             {navLinks.map((link) => (
-              <div key={link.path}>
-                {renderLink(link)}
-              </div>
+              <div key={link.path}>{renderLink(link)}</div>
             ))}
 
             {/* Blog Dropdown */}
@@ -125,23 +167,26 @@ export const Navbar = () => {
               >
                 <BookOpen size={20} />
                 Blog
-                <ChevronDown size={16} className={`transform transition-transform ${
-                  blogDropdownOpen ? 'rotate-180' : ''
-                }`} />
+                <ChevronDown
+                  size={16}
+                  className={`transform transition-transform ${
+                    blogDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
               </button>
 
               {blogDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-dark-card rounded-xl shadow-lg border border-gray-100 dark:border-dark-border overflow-hidden">
                   {blogCategories.map((category) => (
-                    <RouterLink
+                    <button
                       key={category.name}
-                      to="/blog"
-                      className="flex items-start gap-3 p-4 hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors"
-                      onClick={() => setBlogDropdownOpen(false)}
+                      onClick={() => {
+                        handleNavigation("/blog");
+                        setBlogDropdownOpen(false);
+                      }}
+                      className="flex items-start gap-3 p-4 hover:bg-gray-50 dark:hover:bg-dark-hover transition-colors w-full text-left"
                     >
-                      <div className="flex-shrink-0 mt-1">
-                        {category.icon}
-                      </div>
+                      <div className="flex-shrink-0 mt-1">{category.icon}</div>
                       <div>
                         <div className="font-medium text-gray-900 dark:text-dark-primary">
                           {category.name}
@@ -150,7 +195,7 @@ export const Navbar = () => {
                           {category.description}
                         </div>
                       </div>
-                    </RouterLink>
+                    </button>
                   ))}
                 </div>
               )}
@@ -173,32 +218,32 @@ export const Navbar = () => {
         </div>
       </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
+      {/* Mobile Navigation */}
+      {isOpen && (
         <div className="md:hidden bg-white dark:bg-dark-card border-t dark:border-dark-border">
           <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-            <div key={link.path}>
-              {renderLink(link)}
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <div key={link.path}>{renderLink(link)}</div>
+              ))}
+              <button
+                onClick={() => {
+                  handleNavigation("/blog");
+                  setIsOpen(false);
+                }}
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white py-2 text-left"
+              >
+                Blog
+              </button>
+              <div className="pt-4 border-t dark:border-dark-border">
+                <ThemeToggle />
+              </div>
             </div>
-            ))}
-            <RouterLink
-            to="/blog"
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white py-2"
-            onClick={() => setIsOpen(false)}
-            >
-            Blog
-            </RouterLink>
-            <div className="pt-4 border-t dark:border-dark-border">
-            <ThemeToggle />
-            </div>
-          </div>
           </div>
         </div>
-        )}
-      </nav>
-      )
-    }
+      )}
+    </nav>
+  );
+};
 
-    export default Navbar
+export default Navbar;

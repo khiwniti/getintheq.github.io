@@ -1,6 +1,4 @@
-import VerticalTimeline from './VerticalTimeline'
-
-
+import VerticalTimeline from "./VerticalTimeline";
 
 const experienceData = [
   {
@@ -9,7 +7,8 @@ const experienceData = [
     company: "Charoen Pokphand Group Co.,Ltd.",
     contractType: "Contract",
     location: "Samut Prakan, Thailand",
-    description: "Charoen Pokphand Group Co.,Ltd. | Charoen Pokphand Leadership Institute | Charoen Pokphand Food Packaging Industry Co., Ltd.",
+    description:
+      "Charoen Pokphand Group Co.,Ltd. | Charoen Pokphand Leadership Institute | Charoen Pokphand Food Packaging Industry Co., Ltd.",
     responsibilities: [
       "Orchestrated the optimization of a 24-cavity stack mold, enhancing its capacity to 300,000 pieces/day and focusing on Overall Equipment Efficiency (OEE) for waste reduction and cost-effectiveness.",
       "Initiated and executed projects to address abnormal factors in OEE, ensuring continuous improvement and operational excellence.",
@@ -17,27 +16,29 @@ const experienceData = [
       "Implemented a tele-sales strategy, leveraging Python programming with the Google Maps API to streamline market observation.",
       "Acted as a representative and reporter for the Food Packaging Business Unit at CPLI events.",
       "Participated in numerous professional development classes.",
-      "Reported directly to the C.P. Shareman Executive, providing regular updates on project progress and outcomes."
+      "Reported directly to the C.P. Shareman Executive, providing regular updates on project progress and outcomes.",
     ],
     relevantProjects: [
       {
         name: "Market Analysis Automation",
-        description: "Utilized Python and the Google Maps API for targeted data scraping, revolutionizing tele-sales efforts.",
-        outcome: "Increased sales efficiency by 40%"
+        description:
+          "Utilized Python and the Google Maps API for targeted data scraping, revolutionizing tele-sales efforts.",
+        outcome: "Increased sales efficiency by 40%",
       },
       {
         name: "Business Intelligence Dashboard",
-        description: "Created and maintained a Power BI dashboard for effective data visualization and reporting.",
-        outcome: "Improved decision-making process by 30%"
-      }
+        description:
+          "Created and maintained a Power BI dashboard for effective data visualization and reporting.",
+        outcome: "Improved decision-making process by 30%",
+      },
     ],
     skills: [
       "Business Development",
       "Data Analysis",
       "Python",
       "Google Maps API",
-      "Microsoft Power BI"
-    ]
+      "Microsoft Power BI",
+    ],
   },
   {
     date: "Nov 2021 - Jul 2022",
@@ -45,25 +46,28 @@ const experienceData = [
     company: "Thailand Institute of Nuclear Technology",
     contractType: "Full-time",
     location: "Bangkok City, Thailand",
-    description: "Thailand Institute of Nuclear Technology (Public Organization)",
+    description:
+      "Thailand Institute of Nuclear Technology (Public Organization)",
     responsibilities: [
       "Pioneered the development and management of comprehensive maintenance systems for radiopharmaceutical production.",
       "Specialized in the maintenance of Water for Injection (WFI) and Purified Water (PW) systems.",
       "Spearheaded the initiation and oversight of computerized systems.",
       "Authored comprehensive work instructions and safety protocols.",
-      "Maintained HVAC and cleanroom parameters compliance with ASHRAE and GMP standards."
+      "Maintained HVAC and cleanroom parameters compliance with ASHRAE and GMP standards.",
     ],
     relevantProjects: [
       {
         name: "Data Analysis for Quality Control",
-        description: "Applied sophisticated data cleaning methodologies to facilitate robust fraud detection and outlier analysis.",
-        outcome: "Reduced anomalies by 65%"
+        description:
+          "Applied sophisticated data cleaning methodologies to facilitate robust fraud detection and outlier analysis.",
+        outcome: "Reduced anomalies by 65%",
       },
       {
         name: "Preventive Maintenance Enhancement",
-        description: "Leveraged data science methodologies for analysis of abnormal biological parameters.",
-        outcome: "Improved maintenance efficiency by 40%"
-      }
+        description:
+          "Leveraged data science methodologies for analysis of abnormal biological parameters.",
+        outcome: "Improved maintenance efficiency by 40%",
+      },
     ],
     skills: [
       "Data Analysis",
@@ -72,8 +76,8 @@ const experienceData = [
       "Clean Rooms",
       "Machine Learning",
       "Laboratory Safety",
-      "HVAC Engineering"
-    ]
+      "HVAC Engineering",
+    ],
   },
   {
     date: "Jan 2021 - Jul 2021",
@@ -88,26 +92,28 @@ const experienceData = [
       "Applied advanced mechanical design skills using ANSYS and Moldex3D.",
       "Oversaw prototype testing and international lab collaboration.",
       "Redesigned vacuum compartment for HITACHI FBF model transition.",
-      "Utilized CAD software for 3D drawing and design process."
+      "Utilized CAD software for 3D drawing and design process.",
     ],
     relevantProjects: [
       {
         name: "Vacuum Compartment Redesign",
-        description: "Led the redesign project for HITACHI FBF640 to FBF720 transition.",
-        outcome: "Successfully implemented new design specifications"
+        description:
+          "Led the redesign project for HITACHI FBF640 to FBF720 transition.",
+        outcome: "Successfully implemented new design specifications",
       },
       {
         name: "Cost Reduction Initiative",
-        description: "Applied Pareto analysis for optimal part selection and cost reduction.",
-        outcome: "Achieved significant cost savings"
-      }
+        description:
+          "Applied Pareto analysis for optimal part selection and cost reduction.",
+        outcome: "Achieved significant cost savings",
+      },
     ],
     skills: [
       "SOLIDWORKS",
       "Refrigerator",
       "Statistical Software",
-      "Computer-Aided Design (CAD)"
-    ]
+      "Computer-Aided Design (CAD)",
+    ],
   },
   {
     date: "Jun 2019 - Jan 2021",
@@ -124,34 +130,38 @@ const experienceData = [
       "Controlled joint fit-up and liaison with inspectors.",
       "Oversaw project schedule and completion.",
       "Developed 3D pipeline as-built drawings.",
-      "Applied coating standards and managed tank foundation levels."
+      "Applied coating standards and managed tank foundation levels.",
     ],
     relevantProjects: [
       {
         name: "EPC Project Documentation",
-        description: "Managed comprehensive documentation for Bangchack Refinery project.",
-        outcome: "100% compliance with ASME standards"
+        description:
+          "Managed comprehensive documentation for Bangchack Refinery project.",
+        outcome: "100% compliance with ASME standards",
       },
       {
         name: "3D Pipeline Modeling",
-        description: "Created detailed as-built drawings using AutoCAD Plant 3D.",
-        outcome: "Improved documentation accuracy by 90%"
-      }
+        description:
+          "Created detailed as-built drawings using AutoCAD Plant 3D.",
+        outcome: "Improved documentation accuracy by 90%",
+      },
     ],
     skills: [
       "Project Management",
       "ASME Standards",
       "AutoCAD Plant 3D",
-      "Quality Control"
-    ]
-  }
-]
+      "Quality Control",
+    ],
+  },
+];
 
-const Experience = () => {
+const Experience: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-20">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold mb-4 dark:text-dark-primary">Professional Experience</h2>
+        <h2 className="text-4xl font-bold mb-4 dark:text-dark-primary">
+          Professional Experience
+        </h2>
         <p className="text-gray-600 dark:text-dark-secondary max-w-2xl mx-auto">
           A chronicle of my professional journey and key achievements
         </p>
@@ -161,6 +171,6 @@ const Experience = () => {
         <VerticalTimeline items={experienceData} />
       </div>
     </div>
-  )
-}
-export default Experience
+  );
+};
+export default Experience;

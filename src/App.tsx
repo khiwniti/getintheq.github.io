@@ -1,48 +1,45 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
+import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { UndoProvider } from './contexts/UndoContext'
-import { Suspense, lazy } from 'react'
-import Loading from './components/Loading'
+import Home from './components/Home'
+import BlogPage from './components/BlogPage'
+import ProjectsPage from './components/ProjectsPage'
+import ProjectDetails from './components/ProjectDetails'
+import MarketingDashboard from './components/MarketingDashboard'
+import ErrorBoundary from './components/ErrorBoundary'
 
-// Lazy loaded components
-const Home = lazy(() => import('./components/Home'))
-const Blog = lazy(() => import('./pages/Blog'))
-const ProjectsPage = lazy(() => import('./pages/Projects'))
+// Import tempo routes only in development
+let routes: any = []
+if (import.meta.env.VITE_TEMPO) {
+  try {
+    const tempoRoutes = await import('tempo-routes')
+    routes = tempoRoutes.default || []
+  } catch (error) {
+    console.log('Tempo routes not available')
+  }
+}
 
-const App = () => {
+function App() {
   return (
-    <UndoProvider>
+    <ErrorBoundary>
       <ThemeProvider>
-        <BrowserRouter>
-          <div className="min-h-screen flex flex-col bg-white dark:bg-dark-bg dark:bg-opacity-85 text-gray-900 dark:text-gray-100 transition-colors duration-200 relative">
-            <div className="fixed inset-0 dark:bg-gradient-to-br dark:from-dark-gradient-start dark:to-dark-gradient-end -z-10" />
-            <div className="dark:backdrop-blur-md relative z-10">
-              <main className="flex-grow">
-                <Suspense fallback={<Loading />}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/projects" element={<ProjectsPage />} />
-                    <Route path="/blog" element={<Blog />} />
-                  </Routes>
-                </Suspense>
-              </main>
-              <Toaster
-                toastOptions={{
-                  style: {
-                    background: 'var(--toast-bg)',
-                    color: 'var(--toast-color)',
-                    backdropFilter: 'blur(8px)',
-                  },
-                }}
-              />
-            </div>
-          </div>
-        </BrowserRouter>
+        <UndoProvider>
+          <Router>
+            {/* Tempo routes */}
+            {import.meta.env.VITE_TEMPO && useRoutes(routes)}
+            
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/projects/:id" element={<ProjectDetails />} />
+              <Route path="/marketing-dashboard" element={<MarketingDashboard />} />
+            </Routes>
+          </Router>
+        </UndoProvider>
       </ThemeProvider>
-    </UndoProvider>
+    </ErrorBoundary>
   )
 }
 
 export default App
-
