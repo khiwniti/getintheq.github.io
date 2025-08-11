@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   image: string;
   tools?: string[];
+  technologies?: string[];
   link?: string;
   type?: string;
   tags: string[];

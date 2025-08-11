@@ -1,4 +1,3 @@
-import React from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { Project } from '../types/Project';
 import { Github, Linkedin, LineChart } from 'lucide-react';

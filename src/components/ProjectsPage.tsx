@@ -1,6 +1,6 @@
 import { Github, Linkedin, LineChart } from 'lucide-react'
 import ProjectCard from './ProjectCard'
-import { Project } from './ProjectDetails'
+import { Project } from '../types/Project'
 
 const Hero = () => {
   return (
@@ -86,6 +86,7 @@ const ProjectsPage = () => {
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
+              id={project.id}
               title={project.title}
               description={project.description}
               image={project.image}

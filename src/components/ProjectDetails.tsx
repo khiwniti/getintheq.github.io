@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { projects } from '../pages/Projects';
-import { Project } from '../types/Project';
 import { ArrowLeft } from 'lucide-react';
 
 const ProjectDetails: React.FC = () => {
